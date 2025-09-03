@@ -7,9 +7,17 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
 
 management:
-  tracing:
-    sampling:
-      probability: 1.0
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    prometheus:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
 
 spring:
   datasource:

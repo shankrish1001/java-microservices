@@ -1,15 +1,6 @@
 server:
   port: 8765
 
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
-
-management:
-  tracing:
-    sampling:
-      probability: 1.0
 
 spring:
   application:
@@ -27,3 +18,23 @@ spring:
           uri: lb://department-service
           predicates:
             - Path=/api/v1/department/**
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    prometheus:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
